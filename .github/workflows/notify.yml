@@ -14,5 +14,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-          -d "{\"content\": \"🚀 **تم تحديث الموقع بنجاح!}}\"}" \
+          -d "{\"content\": \"تم تحديث الإحصائيات\"}" \
           $DISCORD_WEBHOOK
