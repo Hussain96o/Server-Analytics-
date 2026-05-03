@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>مركز تحليلات السيرفر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-deep:       #070711;
+            --bg-mid:        #0d0b1a;
+            --surface-0:     rgba(15, 12, 26, 0.85);
+            --surface-1:     rgba(22, 18, 40, 0.80);
+            --surface-hover: rgba(30, 24, 34, 0.40);
+            --border:        rgba(140, 100, 210, 0.18);
+            --border-hover:  rgba(180, 130, 255, 0.45);
+            --accent:        #a78bfa;
+            --accent-bright: #c4b5fd;
+            --accent-dim:    #7c5cbf;
+            --accent-glow:   rgba(167, 139, 250, 0.28);
+            --green:         #34d399;
+            --teal:          #2dd4bf;
+            --pink:          #f472b6;
+            --amber:         #fbbf24;
+            --text-1:        #f1ecff;
+            --text-2:        #b8aed4;
+            --text-3:        #7a6fa0;
+            --radius-sm:     14px;
+            --radius-md:     22px;
+            --radius-lg:     32px;
+            --shadow:        0 8px 32px rgba(0,0,0,0.45);
+            --transition:    all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-1);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════
+           AMBIENT BACKGROUND
+        ═══════════════════════════════════════════ */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(120,80,200,0.12) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: drift1 18s ease-in-out infinite alternate;
+        }
+        .bg-canvas::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(80,130,220,0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: drift2 22s ease-in-out infinite alternate;
+        }
+        .bg-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 65%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: drift3 15s ease-in-out infinite alternate;
+        }
+        @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-60px, 80px) scale(1.1); } }
+        @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(80px, -60px) scale(1.15); } }
+        @keyframes drift3 { from { transform: translate(-50%,-50%) scale(1); } to { transform: translate(-50%,-50%) scale(1.3); } }
+
+        /* ═══════════════════════════════════════════
+           LOADING
+        ═══════════════════════════════════════════ */
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deep);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            transition: opacity 0.5s ease;
+        }
+        .loader-ring {
+            position: relative;
+            width: 56px;
+            height: 56px;
+        }
+        .loader-ring::before,
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+        .loader-ring::before {
+            inset: 0;
+            border: 2px solid rgba(167,139,250,0.15);
+        }
+        .loader-ring::after {
+            inset: 0;
+            border: 2px solid transparent;
+            border-top-color: var(--accent);
+            animation: spin 0.8s linear infinite;
+            filter: drop-shadow(0 0 6px var(--accent));
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading p {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.03em;
+        }
+
+        /* ═══════════════════════════════════════════
+           LAYOUT
+        ═══════════════════════════════════════════ */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 28px 20px 48px;
+        }
+
+        /* ═══════════════════════════════════════════
+           CARD BASE
+        ═══════════════════════════════════════════ */
+        .card {
+            background: var(--surface-0);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1.75rem;
+            box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
+            transition: var(--transition);
+        }
+        .card:hover {
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
+            box-shadow: var(--shadow), 0 0 0 1px rgba(167,139,250,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        /* ═══════════════════════════════════════════
+           HEADER
+        ═══════════════════════════════════════════ */
+        header.card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 20px 24px;
+        }
+        .server-icon-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .server-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            object-fit: cover;
+            background: var(--surface-1);
+            display: block;
+        }
+        .server-icon-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .server-info { flex: 1; min-width: 0; }
+        .server-info h1 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text-1);
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #server-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(167,139,250,0.1);
+            border: 1px solid rgba(167,139,250,0.18);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-2);
+            white-space: nowrap;
+        }
+        .meta-item i { color: var(--accent); font-size: 0.65rem; }
+
+        /* ═══════════════════════════════════════════
+           TABS
+        ═══════════════════════════════════════════ */
+        .tabs {
+            display: flex;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 5px;
+            gap: 4px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(12px);
+        }
+        .tab {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 100px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-3);
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+        }
+        .tab i { font-size: 0.82rem; }
+        .tab:hover { color: var(--text-2); background: rgba(167,139,250,0.08); }
+        .tab.active {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(167,139,250,0.35);
+        }
+
+        /* ═══════════════════════════════════════════
+           TAB PANES
+        ═══════════════════════════════════════════ */
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        /* staggered enter animation */
+        .tab-pane.active .card {
+            animation: fadeUp 0.4s ease both;
+        }
+        .tab-pane.active .card:nth-child(1) { animation-delay: 0.04s; }
+        .tab-pane.active .card:nth-child(2) { animation-delay: 0.10s; }
+        .tab-pane.active .card:nth-child(3) { animation-delay: 0.16s; }
+        .tab-pane.active .card:nth-child(4) { animation-delay: 0.22s; }
+        .tab-pane.active .card:nth-child(5) { animation-delay: 0.28s; }
+        .tab-pane.active .card:nth-child(6) { animation-delay: 0.34s; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ═══════════════════════════════════════════
+           CARD SPACING
+        ═══════════════════════════════════════════ */
+        .tab-pane .card { margin-bottom: 18px; }
+        .tab-pane .card:last-child { margin-bottom: 0; }
+
+        /* ═══════════════════════════════════════════
+           SECTION TITLE
+        ═══════════════════════════════════════════ */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-1);
+            margin-bottom: 1.25rem;
+        }
+        .section-title .title-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(167,139,250,0.2), rgba(124,92,191,0.15));
+            border: 1px solid rgba(167,139,250,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           STAT CARDS GRID
+        ═══════════════════════════════════════════ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+        }
+        .stat-card {
+            background: var(--surface-1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px 16px 16px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .stat-card:hover { transform: translateY(-3px); border-color: var(--border-hover); }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(167,139,250,0.12);
+            border: 1px solid rgba(167,139,250,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        .stat-value {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--text-1);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: var(--text-3);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ═══════════════════════════════════════════
+           PROGRESS BARS
+        ═══════════════════════════════════════════ */
+        .progress-box { margin: 14px 0; }
+        .progress-box:first-child { margin-top: 0; }
+        .progress-box:last-child { margin-bottom: 0; }
+        .p-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-2);
+            margin-bottom: 8px;
+        }
+        .p-label span:last-child {
+            font-size: 0.72rem;
+            color: var(--text-3);
+            background: rgba(167,139,250,0.1);
+            padding: 2px 10px;
+            border-radius: 100px;
+        }
+        .p-track {
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+        .p-fill {
+            height: 100%;
+            border-radius: 100px;
+            transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .p-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px; height: 100%;
+            background: rgba(255,255,255,0.5);
+            border-radius: 100px;
+            filter: blur(1px);
+        }
+
+        /* ═══════════════════════════════════════════
+           USER GRID & CARDS
+        ═══════════════════════════════════════════ */
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 14px;
+        }
+        .user-card {
+            background: var(--surface-1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 10px 14px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+        .user-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            background: var(--surface-hover);
+        }
+        .user-avatar {
+            width: 54px;
+            height: 54px;
+            border-radius: 100px;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            display: block;
+            border: 2px solid rgba(167,139,250,0.3);
+            background: var(--surface-0);
+            transition: var(--transition);
+        }
+        .user-card:hover .user-avatar { border-color: var(--accent); }
+        .user-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-1);
+            display: block;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .staff-role {
+            font-size: 0.62rem;
+            padding: 3px 10px;
+            border-radius: 100px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════
+           SUB TABS
+        ═══════════════════════════════════════════ */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 14px;
+        }
+        .sub-tab {
+            background: transparent;
+            padding: 7px 18px;
+            border-radius: 100px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-3);
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .sub-tab:hover { color: var(--text-2); border-color: var(--border); }
+        .sub-tab.active {
+            background: rgba(167,139,250,0.15);
+            color: var(--accent-bright);
+            border-color: rgba(167,139,250,0.3);
+        }
+
+        /* ═══════════════════════════════════════════
+           CHART BOX
+        ═══════════════════════════════════════════ */
+        .chart-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        canvas#memberChart {
+            max-width: 240px;
+            max-height: 240px;
+            margin-bottom: 16px;
+        }
+        .chart-hint {
+            text-align: center;
+            font-size: 0.62rem;
+            color: var(--text-3);
+            margin-top: 12px;
+        }
+        .chart-hint i { margin-left: 4px; }
+
+        /* ═══════════════════════════════════════════
+           CUSTOM LEGEND
+        ═══════════════════════════════════════════ */
+        .custom-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 10px;
+            list-style: none;
+            padding: 0;
+            margin-top: 4px;
+        }
+        .custom-legend li {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.07);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            color: var(--text-2);
+            transition: var(--transition);
+            cursor: default;
+        }
+        .custom-legend li:hover {
+            background: rgba(167,139,250,0.1);
+            border-color: rgba(167,139,250,0.25);
+            color: var(--text-1);
+            transform: translateY(-1px);
+        }
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           BOOST SECTION
+        ═══════════════════════════════════════════ */
+        .boost-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .boost-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, rgba(196,181,253,0.15), rgba(167,139,250,0.08));
+            border: 1px solid rgba(196,181,253,0.25);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-bright);
+        }
+        .boost-count {
+            font-size: 0.72rem;
+            color: var(--text-3);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════ */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.66rem;
+            color: var(--text-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        footer .dot {
+            width: 5px; height: 5px;
+            background: var(--accent);
+            border-radius: 100px;
+            opacity: 0.5;
+        }
+
+        /* ═══════════════════════════════════════════
+           EMPTY STATE
+        ═══════════════════════════════════════════ */
+        .empty-state {
+            text-align: center;
+            padding: 32px 16px;
+            color: var(--text-3);
+            font-size: 0.8rem;
+            width: 100%;
+        }
+        .empty-state i { display: block; font-size: 1.4rem; margin-bottom: 8px; opacity: 0.5; }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════ */
+        @media (max-width: 640px) {
+            .container { padding: 16px 14px 36px; }
+            header.card { flex-direction: column; text-align: center; padding: 18px; }
+            .server-icon-wrap { margin: 0 auto; }
+            #server-meta { justify-content: center; }
+            .server-info h1 { font-size: 1.4rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .stat-value { font-size: 1.7rem; }
+            .user-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .card { padding: 1.15rem 1.2rem; border-radius: 22px; }
+            .tab { font-size: 0.76rem; padding: 9px 10px; }
+            .custom-legend li { padding: 4px 10px; font-size: 0.68rem; }
+        }
+        @media (max-width: 400px) {
+            .tab span { display: none; }
+            .tab i { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="bg-canvas"><div class="bg-orb"></div></div>
+
+<!-- Loading -->
+<div id="loading">
+    <div class="loader-ring"></div>
+    <p>جاري تحميل لوحة التحليلات…</p>
+</div>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="card">
+        <div class="server-icon-wrap">
+            <img id="server-icon" class="server-icon" src="" alt="أيقونة السيرفر" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+        </div>
+        <div class="server-info">
+            <h1 id="server-name">---</h1>
+            <div id="server-meta"></div>
+        </div>
+    </header>
+
+    <!-- Main Tabs -->
+    <nav class="tabs">
+        <div class="tab active" onclick="switchTab(this,'general')">
+            <i class="fas fa-chart-simple"></i><span>إحصائيات عامة</span>
+        </div>
+        <div class="tab" onclick="switchTab(this,'members')">
+            <i class="fas fa-users"></i><span>نشاط الأعضاء</span>
+        </div>
+    </nav>
+
+    <!-- ═══ TAB: GENERAL ═══ -->
+    <div id="tab-general" class="tab-pane active">
+
+        <!-- Quick Stats -->
+        <div class="card">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-hashtag"></i></div>
+                    <div class="stat-value" id="g-total-ch">0</div>
+                    <div class="stat-label">القنوات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="stat-value" id="g-boosters">0</div>
+                    <div class="stat-label">الداعمين</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boost Level -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-gem"></i></div>
+                مستوى التطوير
+            </div>
+            <div class="boost-header">
+                <span class="boost-badge" id="boost-lvl"><i class="fas fa-gem"></i> المستوى 0</span>
+                <span class="boost-count" id="boost-count">0 / 0</span>
+            </div>
+            <div class="p-track" style="height:8px;">
+                <div class="p-fill" id="boost-bar" style="width:0%; background:linear-gradient(90deg,var(--accent-bright),var(--accent-dim));"></div>
+            </div>
+        </div>
+
+        <!-- Top Channels -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-trophy"></i></div>
+                القنوات الأكثر نشاطاً
+            </div>
+            <div id="top-channels-list"></div>
+        </div>
+
+        <!-- Peak Hours -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-clock"></i></div>
+                ساعات الذروة
+            </div>
+            <div class="chart-box" style="height:200px; width:100%;">
+                <canvas id="peakChart" style="width:100%;height:100%;"></canvas>
+            </div>
+            <p class="chart-hint"><i class="fas fa-info-circle"></i>نشاط الرسائل حسب الساعة خلال اليوم</p>
+        </div>
+
+        <!-- Roles -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-tags"></i></div>
+                الرتب الأكثر انتشاراً
+            </div>
+            <div id="roles-list"></div>
+        </div>
+
+        <!-- Channel Types -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-layer-group"></i></div>
+                أنواع القنوات
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="stat-value" id="ch-text">0</div>
+                    <div class="stat-label">نصية</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <div class="stat-value" id="ch-voice">0</div>
+                    <div class="stat-label">صوتية</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-shield-alt"></i></div>
+                هوية السيرفر والأمان
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                    <div class="stat-value" id="emoji-total" style="font-size:1.7rem;">0</div>
+                    <div class="stat-label">إجمالي الإيموجي</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-lock"></i></div>
+                    <div class="stat-value" id="security-lvl" style="font-size:1rem; padding:8px 0;">---</div>
+                    <div class="stat-label">مستوى التحقق</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══ TAB: MEMBERS ═══ -->
+    <div id="tab-members" class="tab-pane">
+
+        <!-- Staff & Boosters -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-shield-halved"></i></div>
+                الإدارة والداعمون
+            </div>
+            <div class="sub-tabs">
+                <div class="sub-tab active" onclick="switchSub(this,'staff')">👑 الإدارة</div>
+                <div class="sub-tab" onclick="switchSub(this,'boosters')">⭐ الداعمون</div>
+            </div>
+            <div class="user-grid" id="staff-list"></div>
+            <div class="user-grid" id="boosters-list" style="display:none;"></div>
+        </div>
+
+        <!-- Top Week -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-fire-flame-curved"></i></div>
+                الأكثر تفاعلاً (الأسبوع)
+            </div>
+            <div class="user-grid" id="top-week"></div>
+        </div>
+
+        <!-- Top Day -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-hourglass-half"></i></div>
+                الأكثر تفاعلاً (اليوم)
+            </div>
+            <div class="user-grid" id="top-day"></div>
+        </div>
+
+        <!-- Growth -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-chart-line"></i></div>
+                نمو السيرفر
+            </div>
+            <div id="join-stats"></div>
+        </div>
+
+        <!-- Member Distribution -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-chart-pie"></i></div>
+                توزيع الحالات
+            </div>
+            <div class="chart-box">
+                <canvas id="memberChart" width="280" height="280"></canvas>
+                <ul id="customLegend" class="custom-legend"></ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="dot"></div>
+        <i class="far fa-clock"></i>
+        آخر تحديث: <span id="update-t">---</span>
+        <div class="dot"></div>
+    </footer>
+
+</div>
+
+<script>
+    let memberChart = null;
+    let peakChart = null;
+
+    function timeAgo(date) {
+        const seconds = Math.floor((new Date() - date) / 1000);
+        if (seconds < 60) return "منذ ثوانٍ";
+        const minutes = Math.floor(seconds / 60);
+        if (minutes === 1) return "منذ دقيقة";
+        if (minutes === 2) return "منذ دقيقتين";
+        if (minutes < 11) return `منذ ${minutes} دقائق`;
+        if (minutes < 60) return `منذ ${minutes} دقيقة`;
+        const hours = Math.floor(minutes / 60);
+        if (hours === 1) return "منذ ساعة";
+        if (hours === 2) return "منذ ساعتين";
+        if (hours < 11) return `منذ ${hours} ساعات`;
+        if (hours < 24) return `منذ ${hours} ساعة`;
+        const days = Math.floor(hours / 24);
+        if (days === 1) return "منذ يوم";
+        if (days === 2) return "منذ يومين";
+        if (days < 11) return `منذ ${days} أيام`;
+        return `منذ ${days} يوم`;
+    }
+
+    function switchTab(element, tabId) {
+        document.querySelectorAll('nav.tabs .tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        const pane = document.getElementById(`tab-${tabId}`);
+        pane.classList.add('active');
+    }
+
+    function switchSub(element, sub) {
+        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('staff-list').style.display = sub === 'staff' ? 'grid' : 'none';
+        document.getElementById('boosters-list').style.display = sub === 'boosters' ? 'grid' : 'none';
+    }
+
+    function renderUsers(containerId, list, extraKey = '', extraLabel = '') {
+        const container = document.getElementById(containerId);
+        if (!list || list.length === 0) {
+            container.innerHTML = `<div class="empty-state" style="width:100%;"><i class="fas fa-user-slash"></i>لا توجد بيانات</div>`;
+            return;
+        }
+        container.innerHTML = list.map(u => `
+            <div class="user-card">
+                <img src="${u.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}"
+                     class="user-avatar"
+                     onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+                <span class="user-name">${escapeHtml(u.name)}</span>
+                ${u.role
+                    ? `<span class="staff-role" style="background:${u.color||'#a78bfa'}20;color:${u.color||'#a78bfa'};border:1px solid ${u.color||'#a78bfa'}40;">${u.role}</span>`
+                    : (extraKey ? `<span style="font-size:0.62rem;color:var(--text-3);"><i class="fas fa-comment"></i> ${u[extraKey]||0} ${extraLabel}</span>` : '')
+                }
+                ${u.since ? `<span style="font-size:0.58rem;display:block;margin-top:4px;color:var(--text-3);"><i class="far fa-calendar-alt"></i> داعم</span>` : ''}
+            </div>
+        `).join('');
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m] || m));
+    }
+
+    function generateCustomLegend(labels, colors) {
+        const el = document.getElementById('customLegend');
+        if (!el) return;
+        el.innerHTML = labels.map((label, i) => `
+            <li>
+                <span class="legend-color" style="background:${colors[i]};box-shadow:0 0 5px ${colors[i]}80;"></span>
+                <span>${label}</span>
+            </li>
+        `).join('');
+    }
+
+    function makeProgressBar(label, count, maxCount, color = 'var(--accent)', subtitle = '') {
+        const pct = maxCount ? (count / maxCount) * 100 : 0;
+        return `
+            <div class="progress-box">
+                <div class="p-label">
+                    <span>${label}</span>
+                    <span>${subtitle || count}</span>
+                </div>
+                <div class="p-track">
+                    <div class="p-fill" style="width:${pct}%;background:${color};"></div>
+                </div>
+            </div>
+        `;
+    }
+
+    async function loadDashboard() {
+        try {
+            const response = await fetch('stats.json');
+            const d = await response.json();
+
+            // Server info
+            document.getElementById('server-name').innerText = d.server.name || 'سيرفر غير معروف';
+            document.getElementById('server-icon').src = d.server.icon || '';
+            document.getElementById('server-meta').innerHTML = `
+                <span class="meta-item"><i class="fas fa-crown"></i> ${escapeHtml(d.server.owner || 'المالك')}</span>
+                <span class="meta-item"><i class="fas fa-calendar-alt"></i> ${escapeHtml(d.server.age || '---')}</span>
+                <span class="meta-item"><i class="fas fa-id-card"></i> ${escapeHtml(d.server.id || '000')}</span>
+            `;
+
+            // General stats
+            document.getElementById('g-total-ch').innerText = d.channels?.total ?? 0;
+            document.getElementById('g-boosters').innerText = d.server?.boosters ?? 0;
+
+            // Boost bar
+            document.getElementById('boost-lvl').innerHTML = `<i class="fas fa-gem"></i> المستوى ${d.server?.boostLevel ?? 0}`;
+            document.getElementById('boost-count').innerText = `${d.server?.boosters ?? 0} / ${d.server?.nextBoostReq ?? 2}`;
+            document.getElementById('boost-bar').style.width = Math.min(100, d.server?.boostProgress ?? 0) + '%';
+
+            // Channel types
+            document.getElementById('ch-text').innerText = d.channels?.text ?? 0;
+            document.getElementById('ch-voice').innerText = d.channels?.voice ?? 0;
+
+            // Emoji & Security
+            document.getElementById('emoji-total').innerText = d.emojis?.total ?? 0;
+            document.getElementById('security-lvl').innerText = d.server?.verificationLevel || 'بدون';
+
+            // Top Channels
+            const topCh = d.channels?.stats7d || [];
+            const maxCh = topCh.length ? Math.max(...topCh.map(c => c.count), 1) : 1;
+            document.getElementById('top-channels-list').innerHTML =
+                topCh.length
+                    ? topCh.map(ch => makeProgressBar(
+                        `<i class="fas fa-hashtag" style="color:var(--accent);font-size:0.7rem;margin-left:4px;"></i>${escapeHtml(ch.name)}`,
+                        ch.count, maxCh,
+                        'linear-gradient(90deg,var(--accent),var(--accent-dim))',
+                        `${ch.count} رسالة`
+                    )).join('')
+                    : `<div class="empty-state"><i class="fas fa-inbox"></i>لا توجد بيانات نشاط</div>`;
+
+            // Roles
+            const roles = d.roles || [];
+            const maxRole = roles.length ? Math.max(...roles.map(r => r.count), 1) : 1;
+            document.getElementById('roles-list').innerHTML = roles.map(r => {
+                const c = (r.color && r.color !== '#000000') ? r.color : '#a78bfa';
+                return makeProgressBar(
+                    `<i class="fas fa-tag" style="color:${c};font-size:0.7rem;margin-left:4px;"></i>${escapeHtml(r.name)}`,
+                    r.count, maxRole,
+                    c,
+                    r.count
+                );
+            }).join('');
+
+            // Join stats
+            const joins = d.members?.joins || { '24h': 0, '7d': 0 };
+            const joinArr = [
+                { label: 'آخر 24 ساعة', value: joins['24h'] || 0 },
+                { label: 'آخر 7 أيام',  value: joins['7d']  || 0 }
+            ];
+            const maxJoin = Math.max(joinArr[0].value, joinArr[1].value, 1);
+            document.getElementById('join-stats').innerHTML = joinArr.map(j =>
+                makeProgressBar(
+                    `<i class="fas fa-user-plus" style="color:var(--green);font-size:0.7rem;margin-left:4px;"></i>${j.label}`,
+                    j.value, maxJoin,
+                    'linear-gradient(90deg,var(--green),var(--teal))',
+                    `${j.value} عضو`
+                )
+            ).join('');
+
+            // Users lists
+            renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
+            renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
+            renderUsers('staff-list',   d.management   || []);
+            renderUsers('boosters-list', d.boostersList || [], 'since', '');
+
+            // Donut chart
+            const presence = d.members?.presence || { online:0, idle:0, dnd:0 };
+            const chartLabels = ['🟢 متصل', '🌙 غائب', '⛔ مشغول', '👤 بشر', '🤖 بوتات'];
+            const chartColors = ['#a78bfa', '#c4b5fd', '#f472b6', '#818cf8', '#4f46e5'];
+            const chartData = [presence.online||0, presence.idle||0, presence.dnd||0, d.members?.humans||0, d.members?.bots||0];
+
+            if (memberChart) memberChart.destroy();
+            memberChart = new Chart(document.getElementById('memberChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        data: chartData,
+                        backgroundColor: chartColors,
+                        borderWidth: 0,
+                        hoverOffset: 6,
+                        borderRadius: 8,
+                        spacing: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#130f26',
+                            titleColor: '#f1ecff',
+                            bodyColor: '#b8aed4',
+                            borderColor: 'rgba(167,139,250,0.25)',
+                            borderWidth: 1,
+                            padding: 10,
+                            cornerRadius: 10,
+                        }
+                    }
+                }
+            });
+            generateCustomLegend(chartLabels, chartColors);
+
+            // Peak hours bar chart
+            if (peakChart) peakChart.destroy();
+            const hourlyData = d.hourlyActivity || new Array(24).fill(0);
+            peakChart = new Chart(document.getElementById('peakChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: Array.from({length:24}, (_,i) => {
+                        const h = i % 12 || 12;
+                        return `${h}${i < 12 ? 'ص' : 'م'}`;
+                    }),
+                    datasets: [{
+                        label: 'النشاط',
+                        data: hourlyData,
+                        backgroundColor: 'rgba(167,139,250,0.55)',
+                        hoverBackgroundColor: 'rgba(196,181,253,0.9)',
+                        borderRadius: 6,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: { label: c => ` ${c.raw} رسالة` },
+                            backgroundColor: '#130f26',
+                            titleColor: '#f1ecff',
+                            bodyColor: '#b8aed4',
+                            borderColor: 'rgba(167,139,250,0.25)',
+                            borderWidth: 1,
+                            padding: 10,
+                            cornerRadius: 10,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.04)' },
+                            ticks: { color: '#7a6fa0', font: { size: 9, family: 'Cairo' } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#7a6fa0', font: { size: 8, family: 'Cairo' }, maxRotation: 0, autoSkip: true }
+                        }
+                    }
+                }
+            });
+
+            // Timestamp
+            const timestamp = d.timestamp ? new Date(d.timestamp) : new Date();
+            const updateSpan = document.getElementById('update-t');
+            const refresh = () => { updateSpan.innerText = timeAgo(timestamp); };
+            refresh();
+            setInterval(refresh, 60000);
+
+            // Hide loading
+            const loadEl = document.getElementById('loading');
+            loadEl.style.opacity = '0';
+            setTimeout(() => { loadEl.style.display = 'none'; }, 500);
+
+        } catch (err) {
+            console.error(err);
+            document.getElementById('loading').innerHTML = `
+                <div style="text-align:center;color:#7a6fa0;font-size:0.88rem;">
+                    <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:#a78bfa;opacity:0.6;display:block;margin-bottom:14px;"></i>
+                    لم يتم العثور على <code style="color:#a78bfa">stats.json</code>
+                </div>
+            `;
+        }
+    }
+
+    window.onload = loadDashboard;
+</script>
+</body>
+</html>
