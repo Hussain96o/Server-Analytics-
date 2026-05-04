@@ -982,7 +982,7 @@
             document.getElementById('security-lvl').innerText = d.server?.verificationLevel || 'بدون';
 
             // Top Channels
-            const topCh = d.channels?.stats7d || [];
+            const topCh = d.channels?.statsWeek || [];
             const maxCh = topCh.length ? Math.max(...topCh.map(c => c.count), 1) : 1;
             document.getElementById('top-channels-list').innerHTML =
                 topCh.length
@@ -1008,12 +1008,13 @@
             }).join('');
 
             // Join stats
-            const joins = d.members?.joins || { '24h': 0, '7d': 0 };
+            const joins = d.members?.joins || { 'day': 0, 'week': 0, 'month': 0 };
             const joinArr = [
-                { label: 'آخر 24 ساعة', value: joins['24h'] || 0 },
-                { label: 'آخر 7 أيام',  value: joins['7d']  || 0 }
+                { label: 'اليوم', value: joins['day'] || 0 },
+                { label: 'هذا الأسبوع',  value: joins['week']  || 0 },
+                { label: 'هذا الشهر',  value: joins['month']  || 0 }
             ];
-            const maxJoin = Math.max(joinArr[0].value, joinArr[1].value, 1);
+            const maxJoin = Math.max(...joinArr.map(j => j.value), 1);
             document.getElementById('join-stats').innerHTML = joinArr.map(j =>
                 makeProgressBar(
                     `<i class="fas fa-user-plus" style="color:var(--green);font-size:0.7rem;margin-left:4px;"></i>${j.label}`,
