@@ -22,10 +22,10 @@
         "humans": 762,
         "bots": 35,
         "presence": {
-            "online": 58,
-            "idle": 29,
+            "online": 57,
+            "idle": 25,
             "dnd": 24,
-            "offline": 686
+            "offline": 691
         },
         "joins": {
             "day": 3,
@@ -38,7 +38,7 @@
             {
                 "name": "water66",
                 "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
-                "count": 2
+                "count": 3
             },
             {
                 "name": "𝒦𝓃𝒾ℊ𝒽𝓉",
@@ -51,13 +51,13 @@
                 "count": 2
             },
             {
-                "name": "عيسى🚬",
-                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/cf288abeff7a6166d5c8a5b74829223e.webp?size=128",
+                "name": "THE SILVER",
+                "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
                 "count": 2
             },
             {
-                "name": "كيزا الحمداني",
-                "avatar": "https://cdn.discordapp.com/avatars/1301969552258760755/49e7e1505a98837fef50c9f4e52079ad.webp?size=128",
+                "name": "عيسى🚬",
+                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/cf288abeff7a6166d5c8a5b74829223e.webp?size=128",
                 "count": 2
             }
         ],
@@ -70,7 +70,7 @@
             {
                 "name": "water66",
                 "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
-                "count": 20
+                "count": 21
             },
             {
                 "name": "klaus (مُعَزَّز)",
@@ -97,14 +97,14 @@
             "color": "#a500ff"
         },
         {
-            "name": "Hasan",
-            "avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
+            "name": "دانتي",
+            "avatar": "https://cdn.discordapp.com/avatars/682601561876463620/e0c38ebdd8ee32173455dc9512bd8836.webp?size=128",
             "role": "ولي العهد",
             "color": "#4f00ff"
         },
         {
-            "name": "دانتي",
-            "avatar": "https://cdn.discordapp.com/avatars/682601561876463620/e0c38ebdd8ee32173455dc9512bd8836.webp?size=128",
+            "name": "Hasan",
+            "avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
             "role": "ولي العهد",
             "color": "#4f00ff"
         },
@@ -189,27 +189,27 @@
         23,
         1,
         2,
-        4,
-        4,
+        5,
+        7,
         3,
         0
     ],
     "channels": {
         "text": 71,
         "voice": 11,
-        "total": 375,
+        "total": 376,
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 90
+                "count": 91
             },
             {
                 "name": "الرسم┃˼🖌˹",
-                "count": 10
+                "count": 11
             },
             {
                 "name": "الميمز┃˼🤣˹",
-                "count": 5
+                "count": 7
             },
             {
                 "name": "التصميم┃˼🖥˹",
@@ -220,7 +220,7 @@
                 "count": 0
             }
         ],
-        "totalWeek": 105
+        "totalWeek": 109
     },
     "roles": [
         {
@@ -254,6 +254,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٤‏/٥‏/٢٠٢٦، ٨:٣١:٣٢ م",
-    "timestamp": 1777915892826
+    "generatedAt": "٤‏/٥‏/٢٠٢٦، ١٠:٢٥:٢١ م",
+    "timestamp": 1777922721155
 }
