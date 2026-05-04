@@ -1,18 +1,17 @@
-name: Notify Discord on Push (Pre-build)
+name: Notify Discord on Deployment
 
 on:
-  push:
-    branches:
-      - main
+  deployment_status:
 
 jobs:
-  notify-start:
+  notify-success:
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Send Start Notification
+      - name: Send Success Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-          -d "{\"content\": \"⏳ **جاري بدء عملية التحديث...**\nتلقينا تغييرات جديدة، جاري بناء الموقع ومعالجة البيانات الآن.\n👤 بواسطة: ${{ github.actor }}\n📝 التزام: ${{ github.event.head_commit.message }}\"}" \
+          -d "{\"content\": \"✅ **تم تحديث الموقع بنجاح!**\nالبيانات الجديدة صارت جاهزة للمشاهدة الآن.\n🔗 رابط الموقع: https://Hussain96o.github.io/Server-Analytics-/ \"}" \
           $DISCORD_WEBHOOK
