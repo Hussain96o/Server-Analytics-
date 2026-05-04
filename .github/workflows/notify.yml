@@ -1,4 +1,4 @@
-name: Notify Discord on Push
+name: Notify Discord on Push (Pre-build)
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - main
 
 jobs:
-  notify:
+  notify-start:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Webhook Notification
+      - name: Send Start Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-          -d "{\"content\": \"تم تحديث الإحصائيات\nhttps://hussain96o.github.io/Server-Analytics-/\"}" \
+          -d "{\"content\": \"⏳ **جاري بدء عملية التحديث...**\nتلقينا تغييرات جديدة، جاري بناء الموقع ومعالجة البيانات الآن.\n👤 بواسطة: ${{ github.actor }}\n📝 التزام: ${{ github.event.head_commit.message }}\"}" \
           $DISCORD_WEBHOOK
