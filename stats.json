@@ -18,23 +18,28 @@
         "animated": 13
     },
     "members": {
-        "total": 797,
-        "humans": 762,
+        "total": 798,
+        "humans": 763,
         "bots": 35,
         "presence": {
-            "online": 57,
-            "idle": 25,
-            "dnd": 24,
+            "online": 56,
+            "idle": 28,
+            "dnd": 23,
             "offline": 691
         },
         "joins": {
-            "day": 3,
-            "week": 5,
-            "month": 12
+            "day": 4,
+            "week": 6,
+            "month": 13
         }
     },
     "topActive": {
         "day": [
+            {
+                "name": "Hussain",
+                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
+                "count": 5
+            },
             {
                 "name": "water66",
                 "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
@@ -54,18 +59,13 @@
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
                 "count": 2
-            },
-            {
-                "name": "عيسى🚬",
-                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/cf288abeff7a6166d5c8a5b74829223e.webp?size=128",
-                "count": 2
             }
         ],
         "week": [
             {
                 "name": "Hussain",
                 "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
-                "count": 23
+                "count": 27
             },
             {
                 "name": "water66",
@@ -191,7 +191,7 @@
         2,
         5,
         7,
-        3,
+        7,
         0
     ],
     "channels": {
@@ -201,7 +201,7 @@
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 91
+                "count": 95
             },
             {
                 "name": "الرسم┃˼🖌˹",
@@ -220,12 +220,12 @@
                 "count": 0
             }
         ],
-        "totalWeek": 109
+        "totalWeek": 113
     },
     "roles": [
         {
             "name": "عـضــو・",
-            "count": 749,
+            "count": 750,
             "color": "#74d49c"
         },
         {
@@ -254,6 +254,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٤‏/٥‏/٢٠٢٦، ١٠:٢٥:٢١ م",
-    "timestamp": 1777922721155
+    "generatedAt": "٤‏/٥‏/٢٠٢٦، ١٠:٢٨:٥٥ م",
+    "timestamp": 1777922935335
 }
