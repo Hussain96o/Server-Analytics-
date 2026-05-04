@@ -22,10 +22,10 @@
         "humans": 762,
         "bots": 35,
         "presence": {
-            "online": 36,
-            "idle": 16,
-            "dnd": 16,
-            "offline": 729
+            "online": 34,
+            "idle": 21,
+            "dnd": 17,
+            "offline": 725
         },
         "joins": {
             "day": 2,
@@ -35,6 +35,11 @@
     },
     "topActive": {
         "day": [
+            {
+                "name": "Bilo🩵",
+                "avatar": "https://cdn.discordapp.com/avatars/1153148545264783380/a0045ae76868c3cbb12176f6dd43db3c.webp?size=128",
+                "count": 1
+            },
             {
                 "name": "Tanjiro 🔥",
                 "avatar": "https://cdn.discordapp.com/avatars/1053608190736076840/a_4d863768ed9716fbe34385204cc199b2.gif?size=128",
@@ -144,7 +149,7 @@
         0,
         0,
         1,
-        4,
+        5,
         0,
         8,
         0,
@@ -164,7 +169,7 @@
     "channels": {
         "text": 71,
         "voice": 11,
-        "total": 373,
+        "total": 374,
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
@@ -172,7 +177,7 @@
             },
             {
                 "name": "الرسم┃˼🖌˹",
-                "count": 8
+                "count": 9
             },
             {
                 "name": "الميمز┃˼🤣˹",
@@ -187,7 +192,7 @@
                 "count": 0
             }
         ],
-        "totalWeek": 91
+        "totalWeek": 92
     },
     "roles": [
         {
@@ -221,6 +226,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٤‏/٥‏/٢٠٢٦، ٧:٥٨:٣٠ ص",
-    "timestamp": 1777870710015
+    "generatedAt": "٤‏/٥‏/٢٠٢٦، ٨:١٢:٣٦ ص",
+    "timestamp": 1777871556088
 }
