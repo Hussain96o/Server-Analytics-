@@ -478,6 +478,21 @@
             display: inline-block;
             font-weight: 600;
         }
+        .rank-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 0.55rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
 
         /* ═══════════════════════════════════════════
            SUB TABS
@@ -906,6 +921,7 @@
         }
         container.innerHTML = list.map(u => `
             <div class="user-card">
+                ${u.rank ? `<span class="rank-tag">${u.rank}</span>` : ''}
                 <img src="${u.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}"
                      class="user-avatar"
                      onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
