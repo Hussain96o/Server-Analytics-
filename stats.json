@@ -18,19 +18,19 @@
         "animated": 13
     },
     "members": {
-        "total": 795,
-        "humans": 760,
+        "total": 797,
+        "humans": 762,
         "bots": 35,
         "presence": {
-            "online": 55,
-            "idle": 32,
-            "dnd": 25,
-            "offline": 683
+            "online": 36,
+            "idle": 17,
+            "dnd": 15,
+            "offline": 729
         },
         "joins": {
-            "24h": 3,
-            "7d": 15,
-            "30d": 65
+            "24h": 4,
+            "7d": 17,
+            "30d": 66
         }
     },
     "topActive": {
@@ -38,12 +38,12 @@
             {
                 "name": "Hussain",
                 "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
-                "count": 22
+                "count": 20
             },
             {
                 "name": "water66",
                 "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
-                "count": 22
+                "count": 18
             },
             {
                 "name": "klaus (مُعَزَّز)",
@@ -65,12 +65,12 @@
             {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 380
+                "count": 374
             },
             {
                 "name": "Hussain",
                 "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
-                "count": 153
+                "count": 149
             },
             {
                 "name": "klaus (مُعَزَّز)",
@@ -151,12 +151,12 @@
         }
     ],
     "hourlyActivity": [
-        38,
+        29,
         2,
         2,
-        4,
+        6,
         3,
-        5,
+        1,
         9,
         2,
         49,
@@ -174,7 +174,7 @@
         125,
         144,
         18,
-        102
+        99
     ],
     "channels": {
         "text": 71,
@@ -183,7 +183,7 @@
         "stats7d": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 1079
+                "count": 1065
             },
             {
                 "name": "الميمز┃˼🤣˹",
@@ -202,12 +202,12 @@
                 "count": 6
             }
         ],
-        "total7d": 1162
+        "total7d": 1148
     },
     "roles": [
         {
             "name": "عـضــو・",
-            "count": 747,
+            "count": 749,
             "color": "#74d49c"
         },
         {
@@ -236,6 +236,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٣‏/٥‏/٢٠٢٦، ١١:٠٧:٣٤ م",
-    "timestamp": 1777838854032
+    "generatedAt": "٤‏/٥‏/٢٠٢٦، ٧:١٧:١٨ ص",
+    "timestamp": 1777868238228
 }
