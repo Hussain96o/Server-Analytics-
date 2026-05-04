@@ -13,5 +13,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-          -d "{\"content\": \"✅ **تم تحديث الموقع بنجاح!**\nالبيانات الجديدة صارت جاهزة للمشاهدة الآن.\n🔗 رابط الموقع: https://Hussain96o.github.io/Server-Analytics-/ \"}" \
+          -d "{\"embeds\": [{\"description\": \"✅ **[تم تحديث إحصائيات السيرفر بنجاح](https://Hussain96o.github.io/Server-Analytics-/)**\", \"color\": 3066993}]}" \
           $DISCORD_WEBHOOK
