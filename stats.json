@@ -94,71 +94,61 @@
             "name": "كيزا الحمداني",
             "avatar": "https://cdn.discordapp.com/avatars/1301969552258760755/49e7e1505a98837fef50c9f4e52079ad.webp?size=128",
             "role": "الملك",
-            "color": "#a500ff",
-            "rank": "اونر"
+            "color": "#a500ff"
         },
         {
             "name": "Hasan",
             "avatar": "https://cdn.discordapp.com/embed/avatars/0.png",
             "role": "ولي العهد",
-            "color": "#4f00ff",
-            "rank": "ادمن"
+            "color": "#4f00ff"
         },
         {
             "name": "دانتي",
             "avatar": "https://cdn.discordapp.com/avatars/682601561876463620/e0c38ebdd8ee32173455dc9512bd8836.webp?size=128",
             "role": "ولي العهد",
-            "color": "#4f00ff",
-            "rank": "ادمن"
+            "color": "#4f00ff"
         },
         {
             "name": "Vansome",
             "avatar": "https://cdn.discordapp.com/avatars/781621195468046336/02cf73d082d496b15950e8e2d3f16113.webp?size=128",
             "role": "・أمير",
-            "color": "#65e5ff",
-            "rank": "ادمن"
+            "color": "#65e5ff"
         },
         {
             "name": "MAX RD3",
             "avatar": "https://cdn.discordapp.com/avatars/1492978378368614631/f40a6898f40db45185cdc856d5735416.webp?size=128",
             "role": "・أمير",
-            "color": "#65e5ff",
-            "rank": "ادمن"
+            "color": "#65e5ff"
         },
         {
             "name": "Hussain",
             "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
             "role": "・أمير",
-            "color": "#65e5ff",
-            "rank": "ادمن"
+            "color": "#65e5ff"
         },
         {
             "name": "THE WEW",
             "avatar": "https://cdn.discordapp.com/avatars/886950259526348850/2d1a5892f3f642692ccf8e46c69f011e.webp?size=128",
             "role": "・أمير",
-            "color": "#65e5ff",
-            "rank": "ادمن"
+            "color": "#65e5ff"
         },
         {
             "name": "حجي سول",
             "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/df983c365465aa34e089d0f46e50b8b5.webp?size=128",
             "role": "دوق",
-            "color": "#fff2b6",
-            "rank": "مود"
+            "color": "#fff2b6"
         },
         {
             "name": "THE SILVER",
             "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
             "role": "ماركيز",
-            "color": "#b57950",
-            "rank": "مود"
+            "color": "#b57950"
         },
         {
             "name": "الشيخ علاوي",
             "avatar": "https://cdn.discordapp.com/avatars/884446808204509214/bddd103b63d0b403338fe2618a95134f.webp?size=128",
             "role": "مُنسق الفعاليات",
-            "color": "#ff5d00",
-            "rank": "مود"
+            "color": "#ff5d00"
         }
     ],
     "boostersList": [

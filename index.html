@@ -440,9 +440,11 @@
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             padding: 16px 10px 14px;
-            text-align: center;
             transition: var(--transition);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .user-card:hover {
             border-color: var(--border-hover);
@@ -450,8 +452,8 @@
             background: var(--surface-hover);
         }
         .user-avatar {
-            width: 54px;
-            height: 54px;
+            width: 64px;
+            height: 64px;
             border-radius: 100px;
             object-fit: cover;
             margin: 0 auto 10px;
@@ -462,37 +464,24 @@
         }
         .user-card:hover .user-avatar { border-color: var(--accent); }
         .user-name {
-            font-size: 0.78rem;
-            font-weight: 700;
+            font-size: 0.98rem;
+            font-weight: 800;
             color: var(--text-1);
-            display: block;
-            margin-bottom: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
         .staff-role {
+          margin-top:2px;
             font-size: 0.62rem;
-            padding: 3px 10px;
-            border-radius: 100px;
+            padding: 2px 7px;
+            border-radius: 10px;
             display: inline-block;
             font-weight: 600;
         }
-        .rank-tag {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            font-size: 0.55rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            z-index: 2;
-        }
+
 
         /* ═══════════════════════════════════════════
            SUB TABS
@@ -823,22 +812,18 @@
             <div class="user-grid" id="boosters-list" style="display:none;"></div>
         </div>
 
-        <!-- Top Week -->
+        <!-- Top Active -->
         <div class="card">
             <div class="section-title">
                 <div class="title-icon"><i class="fas fa-fire-flame-curved"></i></div>
-                الأكثر تفاعلاً (الأسبوع)
+                الأكثر تفاعلاً
+            </div>
+            <div class="sub-tabs">
+                <div class="sub-tab active" onclick="switchActive(this, 'week')">هذا الأسبوع</div>
+                <div class="sub-tab" onclick="switchActive(this, 'day')">اليوم</div>
             </div>
             <div class="user-grid" id="top-week"></div>
-        </div>
-
-        <!-- Top Day -->
-        <div class="card">
-            <div class="section-title">
-                <div class="title-icon"><i class="fas fa-hourglass-half"></i></div>
-                الأكثر تفاعلاً (اليوم)
-            </div>
-            <div class="user-grid" id="top-day"></div>
+            <div class="user-grid" id="top-day" style="display:none;"></div>
         </div>
 
         <!-- Growth -->
@@ -913,6 +898,13 @@
         document.getElementById('boosters-list').style.display = sub === 'boosters' ? 'grid' : 'none';
     }
 
+    function switchActive(element, activeType) {
+        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
+        document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
+    }
+
     function renderUsers(containerId, list, extraKey = '', extraLabel = '') {
         const container = document.getElementById(containerId);
         if (!list || list.length === 0) {
@@ -921,11 +913,12 @@
         }
         container.innerHTML = list.map(u => `
             <div class="user-card">
-                ${u.rank ? `<span class="rank-tag">${u.rank}</span>` : ''}
                 <img src="${u.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}"
                      class="user-avatar"
                      onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
-                <span class="user-name">${escapeHtml(u.name)}</span>
+                <span class="user-name">
+                    ${escapeHtml(u.name)}
+                </span>
                 ${u.role
                     ? `<span class="staff-role" style="background:${u.color||'#a78bfa'}20;color:${u.color||'#a78bfa'};border:1px solid ${u.color||'#a78bfa'}40;">${u.role}</span>`
                     : (extraKey ? `<span style="font-size:0.62rem;color:var(--text-3);"><i class="fas fa-comment"></i> ${u[extraKey]||0} ${extraLabel}</span>` : '')
@@ -1041,11 +1034,18 @@
                 )
             ).join('');
 
-            // Users lists
-            renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
-            renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
-            renderUsers('staff-list',   d.management   || []);
-            renderUsers('boosters-list', d.boostersList || [], 'since', '');
+    function switchActive(element, activeType) {
+        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
+        document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
+    }
+
+    // Users lists
+    renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
+    renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
+    renderUsers('staff-list',   d.management   || []);
+    renderUsers('boosters-list', d.boostersList || [], 'since', '');
 
             // Donut chart
             const presence = d.members?.presence || { online:0, idle:0, dnd:0 };
