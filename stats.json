@@ -23,9 +23,9 @@
         "bots": 35,
         "presence": {
             "online": 56,
-            "idle": 28,
+            "idle": 29,
             "dnd": 23,
-            "offline": 691
+            "offline": 690
         },
         "joins": {
             "day": 4,
@@ -254,6 +254,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٤‏/٥‏/٢٠٢٦، ١٠:٢٨:٥٥ م",
-    "timestamp": 1777922935335
+    "generatedAt": "٤‏/٥‏/٢٠٢٦، ١٠:٢٩:١٥ م",
+    "timestamp": 1777922955337
 }
