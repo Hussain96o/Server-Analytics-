@@ -22,10 +22,10 @@
         "humans": 765,
         "bots": 35,
         "presence": {
-            "online": 63,
-            "idle": 32,
+            "online": 61,
+            "idle": 33,
             "dnd": 23,
-            "offline": 682
+            "offline": 683
         },
         "joins": {
             "day": 3,
@@ -86,6 +86,33 @@
                 "name": "عيسى🚬",
                 "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/cf288abeff7a6166d5c8a5b74829223e.webp?size=128",
                 "count": 9
+            }
+        ],
+        "month": [
+            {
+                "name": "THE SILVER",
+                "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
+                "count": 182
+            },
+            {
+                "name": "Hussain",
+                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
+                "count": 78
+            },
+            {
+                "name": "Haze",
+                "avatar": "https://cdn.discordapp.com/avatars/1413500147970609205/4e0637e314710130a82fdfae4364563d.webp?size=128",
+                "count": 45
+            },
+            {
+                "name": "Cherry #1 mermaid melody enjoyer",
+                "avatar": "https://cdn.discordapp.com/avatars/548454484037206027/30e8c29d2cd8d6f7c8ce76d1d6931381.webp?size=128",
+                "count": 45
+            },
+            {
+                "name": "عيسى🚬",
+                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/cf288abeff7a6166d5c8a5b74829223e.webp?size=128",
+                "count": 40
             }
         ]
     },
@@ -263,6 +290,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٥‏/٥‏/٢٠٢٦، ٤:٤١:٢٢ م",
-    "timestamp": 1777988482878
+    "generatedAt": "٥‏/٥‏/٢٠٢٦، ٤:٤٧:٤٦ م",
+    "timestamp": 1777988866249
 }
