@@ -738,10 +738,14 @@
                 <div class="title-icon"><i class="fas fa-clock"></i></div>
                 ساعات الذروة
             </div>
+            <div class="sub-tabs">
+                <div class="sub-tab active" onclick="switchPeak(this, 'hours')">ساعات اليوم</div>
+                <div class="sub-tab" onclick="switchPeak(this, 'days')">أيام الأسبوع</div>
+            </div>
             <div class="chart-box" style="height:200px; width:100%;">
                 <canvas id="peakChart" style="width:100%;height:100%;"></canvas>
             </div>
-            <p class="chart-hint"><i class="fas fa-info-circle"></i>نشاط الرسائل حسب الساعة خلال اليوم</p>
+            <p class="chart-hint" id="peak-hint"><i class="fas fa-info-circle"></i>نشاط الرسائل حسب الساعة خلال اليوم</p>
         </div>
 
         <!-- Roles -->
@@ -821,9 +825,11 @@
             <div class="sub-tabs">
                 <div class="sub-tab active" onclick="switchActive(this, 'week')">هذا الأسبوع</div>
                 <div class="sub-tab" onclick="switchActive(this, 'day')">اليوم</div>
+                <div class="sub-tab" onclick="switchActive(this, 'month')">هذا الشهر</div>
             </div>
             <div class="user-grid" id="top-week"></div>
             <div class="user-grid" id="top-day" style="display:none;"></div>
+            <div class="user-grid" id="top-month" style="display:none;"></div>
         </div>
 
         <!-- Growth -->
@@ -862,6 +868,8 @@
 <script>
     let memberChart = null;
     let peakChart = null;
+    let dashboardData = null;
+    let currentPeakType = 'hours';
 
     function timeAgo(date) {
         const seconds = Math.floor((new Date() - date) / 1000);
@@ -903,6 +911,40 @@
         element.classList.add('active');
         document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
         document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
+        document.getElementById('top-month').style.display = activeType === 'month' ? 'grid' : 'none';
+    }
+
+    function switchPeak(element, type) {
+        if (!dashboardData) return;
+        currentPeakType = type;
+        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        updatePeakChart();
+    }
+
+    function updatePeakChart() {
+        if (!peakChart || !dashboardData) return;
+        
+        const isHours = currentPeakType === 'hours';
+        const data = isHours 
+            ? (dashboardData.hourlyActivity || new Array(24).fill(0))
+            : (dashboardData.weeklyActivity || [0,0,0,0,0,0,0]);
+        
+        const labels = isHours
+            ? Array.from({length:24}, (_,i) => {
+                const h = i % 12 || 12;
+                return `${h}${i < 12 ? 'ص' : 'م'}`;
+            })
+            : ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+
+        const hint = document.getElementById('peak-hint');
+        hint.innerHTML = isHours 
+            ? '<i class="fas fa-info-circle"></i>نشاط الرسائل حسب الساعة خلال اليوم'
+            : '<i class="fas fa-info-circle"></i>نشاط الرسائل حسب أيام الأسبوع';
+
+        peakChart.data.labels = labels;
+        peakChart.data.datasets[0].data = data;
+        peakChart.update();
     }
 
     function renderUsers(containerId, list, extraKey = '', extraLabel = '') {
@@ -964,6 +1006,7 @@
             // إضافة بصمة زمنية لمنع التخزين المؤقت (Cache)
             const response = await fetch('stats.json?v=' + Date.now());
             const d = await response.json();
+            dashboardData = d;
 
             // Server info
             document.getElementById('server-name').innerText = d.server.name || 'سيرفر غير معروف';
@@ -1034,16 +1077,10 @@
                 )
             ).join('');
 
-    function switchActive(element, activeType) {
-        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-        element.classList.add('active');
-        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
-        document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
-    }
-
     // Users lists
     renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
     renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
+    renderUsers('top-month', d.topActive?.month || [], 'count', 'رسالة');
     renderUsers('staff-list',   d.management   || []);
     renderUsers('boosters-list', d.boostersList || [], 'since', '');
 
@@ -1089,17 +1126,13 @@
 
             // Peak hours bar chart
             if (peakChart) peakChart.destroy();
-            const hourlyData = d.hourlyActivity || new Array(24).fill(0);
             peakChart = new Chart(document.getElementById('peakChart').getContext('2d'), {
                 type: 'bar',
                 data: {
-                    labels: Array.from({length:24}, (_,i) => {
-                        const h = i % 12 || 12;
-                        return `${h}${i < 12 ? 'ص' : 'م'}`;
-                    }),
+                    labels: [],
                     datasets: [{
                         label: 'النشاط',
-                        data: hourlyData,
+                        data: [],
                         backgroundColor: 'rgba(167,139,250,0.55)',
                         hoverBackgroundColor: 'rgba(196,181,253,0.9)',
                         borderRadius: 6,
@@ -1135,6 +1168,7 @@
                     }
                 }
             });
+            updatePeakChart();
 
             // Timestamp
             const timestamp = d.timestamp ? new Date(d.timestamp) : new Date();
