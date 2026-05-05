@@ -18,23 +18,28 @@
         "animated": 13
     },
     "members": {
-        "total": 798,
-        "humans": 763,
+        "total": 799,
+        "humans": 764,
         "bots": 35,
         "presence": {
-            "online": 40,
-            "idle": 16,
-            "dnd": 15,
-            "offline": 727
+            "online": 36,
+            "idle": 24,
+            "dnd": 17,
+            "offline": 722
         },
         "joins": {
-            "day": 1,
-            "week": 7,
-            "month": 14
+            "day": 2,
+            "week": 8,
+            "month": 15
         }
     },
     "topActive": {
         "day": [
+            {
+                "name": "حجي سول",
+                "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/df983c365465aa34e089d0f46e50b8b5.webp?size=128",
+                "count": 3
+            },
             {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
@@ -46,8 +51,13 @@
                 "count": 2
             },
             {
-                "name": "حجي سول",
-                "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/df983c365465aa34e089d0f46e50b8b5.webp?size=128",
+                "name": "Abdo Hassan",
+                "avatar": "https://cdn.discordapp.com/avatars/1258285709085773855/7acf6f5bd61b923c1ffe4880fe2b8c0a.webp?size=128",
+                "count": 1
+            },
+            {
+                "name": "klaus (مُعَزَّز)",
+                "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
                 "count": 1
             }
         ],
@@ -55,7 +65,7 @@
             {
                 "name": "Hussain",
                 "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/c8b6cfd0f9a3bdde196454ac39324d82.webp?size=128",
-                "count": 27
+                "count": 28
             },
             {
                 "name": "water66",
@@ -65,7 +75,7 @@
             {
                 "name": "klaus (مُعَزَّز)",
                 "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 13
+                "count": 14
             },
             {
                 "name": "أَبُو مُصْطَفَى",
@@ -165,11 +175,11 @@
         1,
         0,
         0,
-        0,
+        1,
         1,
         5,
-        0,
-        9,
+        3,
+        10,
         3,
         1,
         6,
@@ -187,15 +197,15 @@
     "channels": {
         "text": 71,
         "voice": 11,
-        "total": 376,
+        "total": 375,
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 97
+                "count": 99
             },
             {
                 "name": "الميمز┃˼🤣˹",
-                "count": 11
+                "count": 14
             },
             {
                 "name": "الرسم┃˼🖌˹",
@@ -210,12 +220,12 @@
                 "count": 0
             }
         ],
-        "totalWeek": 118
+        "totalWeek": 123
     },
     "roles": [
         {
             "name": "عـضــو・",
-            "count": 750,
+            "count": 751,
             "color": "#74d49c"
         },
         {
@@ -244,6 +254,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٥‏/٥‏/٢٠٢٦، ٥:٢٣:٥٦ ص",
-    "timestamp": 1777947836781
+    "generatedAt": "٥‏/٥‏/٢٠٢٦، ١١:٣٣:٣٤ ص",
+    "timestamp": 1777970014387
 }
