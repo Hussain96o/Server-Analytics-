@@ -492,8 +492,16 @@
             margin-bottom: 18px;
             border-bottom: 1px solid var(--border);
             padding-bottom: 14px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .sub-tabs::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari and Opera */
         }
         .sub-tab {
+            flex-shrink: 0;
             background: transparent;
             padding: 7px 18px;
             border-radius: 100px;
@@ -823,13 +831,15 @@
                 الأكثر تفاعلاً
             </div>
             <div class="sub-tabs">
-                <div class="sub-tab active" onclick="switchActive(this, 'week')">هذا الأسبوع</div>
-                <div class="sub-tab" onclick="switchActive(this, 'day')">اليوم</div>
+                <div class="sub-tab active" onclick="switchActive(this, 'day')">اليوم</div>
+                <div class="sub-tab" onclick="switchActive(this, 'week')">هذا الأسبوع</div>
                 <div class="sub-tab" onclick="switchActive(this, 'month')">هذا الشهر</div>
+                <div class="sub-tab" onclick="switchActive(this, 'year')">هذا العام</div>
             </div>
-            <div class="user-grid" id="top-week"></div>
-            <div class="user-grid" id="top-day" style="display:none;"></div>
+            <div class="user-grid" id="top-day"></div>
+            <div class="user-grid" id="top-week" style="display:none;"></div>
             <div class="user-grid" id="top-month" style="display:none;"></div>
+            <div class="user-grid" id="top-year" style="display:none;"></div>
         </div>
 
         <!-- Growth -->
@@ -909,9 +919,10 @@
     function switchActive(element, activeType) {
         element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
         element.classList.add('active');
-        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
         document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
+        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
         document.getElementById('top-month').style.display = activeType === 'month' ? 'grid' : 'none';
+        document.getElementById('top-year').style.display = activeType === 'year' ? 'grid' : 'none';
     }
 
     function switchPeak(element, type) {
@@ -1061,11 +1072,12 @@
             }).join('');
 
             // Join stats
-            const joins = d.members?.joins || { 'day': 0, 'week': 0, 'month': 0 };
+            const joins = d.members?.joins || { 'day': 0, 'week': 0, 'month': 0, 'year': 0 };
             const joinArr = [
                 { label: 'اليوم', value: joins['day'] || 0 },
                 { label: 'هذا الأسبوع',  value: joins['week']  || 0 },
-                { label: 'هذا الشهر',  value: joins['month']  || 0 }
+                { label: 'هذا الشهر',  value: joins['month']  || 0 },
+                { label: 'هذا العام',  value: joins['year']   || 0 }
             ];
             const maxJoin = Math.max(...joinArr.map(j => j.value), 1);
             document.getElementById('join-stats').innerHTML = joinArr.map(j =>
@@ -1078,9 +1090,10 @@
             ).join('');
 
     // Users lists
-    renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
     renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
+    renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
     renderUsers('top-month', d.topActive?.month || [], 'count', 'رسالة');
+    renderUsers('top-year', d.topActive?.year || [], 'count', 'رسالة');
     renderUsers('staff-list',   d.management   || []);
     renderUsers('boosters-list', d.boostersList || [], 'since', '');
 
