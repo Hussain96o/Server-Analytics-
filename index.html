@@ -521,6 +521,87 @@
         }
 
         /* ═══════════════════════════════════════════
+           PODIUM & EMOJIS
+        ═══════════════════════════════════════════ */
+        .podium-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 8px;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+        .podium-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 32%;
+            position: relative;
+        }
+        .podium-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: 8px;
+            position: relative;
+            background: var(--surface-0);
+            object-fit: cover;
+        }
+        .podium-item.rank-1 .podium-avatar { width: 85px; height: 85px; border-color: #ffd700; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        .podium-item.rank-2 .podium-avatar { border-color: #c0c0c0; }
+        .podium-item.rank-3 .podium-avatar { border-color: #cd7f32; }
+        
+        .crown {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-5deg);
+            font-size: 1.4rem;
+            color: #ffd700;
+            z-index: 10;
+        }
+        
+        .podium-base {
+            width: 100%;
+            background: linear-gradient(180deg, var(--surface-1), var(--bg-mid));
+            border: 1px solid var(--border);
+            border-radius: 12px 12px 4px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 5px;
+            min-height: 60px;
+        }
+        .podium-item.rank-1 .podium-base { min-height: 100px; border-color: rgba(255,215,0,0.3); }
+        .podium-item.rank-2 .podium-base { min-height: 80px; border-color: rgba(192,192,192,0.3); }
+        .podium-item.rank-3 .podium-base { min-height: 65px; border-color: rgba(205,127,50,0.3); }
+        
+        .podium-name { font-size: 0.72rem; font-weight: 800; color: var(--text-1); text-align: center; margin-bottom: 2px; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .podium-count { font-size: 0.6rem; color: var(--accent-bright); font-weight: 600; }
+        .podium-rank { font-size: 1.1rem; font-weight: 900; margin-top: auto; opacity: 0.4; color: var(--text-1); }
+
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .emoji-card {
+            background: var(--surface-1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .emoji-card:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--surface-hover); }
+        .emoji-img { width: 44px; height: 44px; margin-bottom: 8px; object-fit: contain; }
+        .emoji-count { font-size: 0.88rem; font-weight: 800; color: var(--text-1); }
+        .emoji-name { font-size: 0.6rem; color: var(--text-3); font-family: 'Tajawal'; }
+
+        /* ═══════════════════════════════════════════
            CHART BOX
         ═══════════════════════════════════════════ */
         .chart-box {
@@ -765,6 +846,21 @@
             <div id="roles-list"></div>
         </div>
 
+        <!-- Top Emojis -->
+        <div class="card">
+            <div class="section-title">
+                <div class="title-icon"><i class="fas fa-face-smile"></i></div>
+                الإيموجيات الأكثر استخداماً
+            </div>
+            <div class="sub-tabs">
+                <div class="sub-tab active" onclick="switchEmoji(this, 'day')">اليوم</div>
+                <div class="sub-tab" onclick="switchEmoji(this, 'week')">هذا الأسبوع</div>
+                <div class="sub-tab" onclick="switchEmoji(this, 'month')">هذا الشهر</div>
+                <div class="sub-tab" onclick="switchEmoji(this, 'year')">هذا العام</div>
+            </div>
+            <div id="top-emojis-list" class="emoji-grid"></div>
+        </div>
+
         <!-- Channel Types -->
         <div class="card">
             <div class="section-title">
@@ -836,10 +932,10 @@
                 <div class="sub-tab" onclick="switchActive(this, 'month')">هذا الشهر</div>
                 <div class="sub-tab" onclick="switchActive(this, 'year')">هذا العام</div>
             </div>
-            <div class="user-grid" id="top-day"></div>
-            <div class="user-grid" id="top-week" style="display:none;"></div>
-            <div class="user-grid" id="top-month" style="display:none;"></div>
-            <div class="user-grid" id="top-year" style="display:none;"></div>
+            <div id="top-day"></div>
+            <div id="top-week" style="display:none;"></div>
+            <div id="top-month" style="display:none;"></div>
+            <div id="top-year" style="display:none;"></div>
         </div>
 
         <!-- Growth -->
@@ -919,10 +1015,29 @@
     function switchActive(element, activeType) {
         element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
         element.classList.add('active');
-        document.getElementById('top-day').style.display = activeType === 'day' ? 'grid' : 'none';
-        document.getElementById('top-week').style.display = activeType === 'week' ? 'grid' : 'none';
-        document.getElementById('top-month').style.display = activeType === 'month' ? 'grid' : 'none';
-        document.getElementById('top-year').style.display = activeType === 'year' ? 'grid' : 'none';
+        document.getElementById('top-day').style.display = activeType === 'day' ? 'block' : 'none';
+        document.getElementById('top-week').style.display = activeType === 'week' ? 'block' : 'none';
+        document.getElementById('top-month').style.display = activeType === 'month' ? 'block' : 'none';
+        document.getElementById('top-year').style.display = activeType === 'year' ? 'block' : 'none';
+    }
+
+    function switchEmoji(element, type) {
+        if (!dashboardData) return;
+        element.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        renderEmojis(dashboardData.topEmojis?.[type] || []);
+    }
+
+    function renderEmojis(list) {
+        document.getElementById('top-emojis-list').innerHTML = list.length
+            ? list.map(e => `
+                <div class="emoji-card">
+                    <img src="${e.url}" class="emoji-img">
+                    <div class="emoji-count">${e.count}</div>
+                    <div class="emoji-name">:${escapeHtml(e.name)}:</div>
+                </div>
+            `).join('')
+            : `<div class="empty-state" style="grid-column: span 3;"><i class="fas fa-face-meh"></i>لا توجد بيانات</div>`;
     }
 
     function switchPeak(element, type) {
@@ -956,6 +1071,51 @@
         peakChart.data.labels = labels;
         peakChart.data.datasets[0].data = data;
         peakChart.update();
+    }
+
+    function renderTopActive(containerId, list, extraKey = '', extraLabel = '') {
+        const container = document.getElementById(containerId);
+        if (!list || list.length === 0) {
+            container.innerHTML = `<div class="empty-state" style="width:100%;"><i class="fas fa-user-slash"></i>لا توجد بيانات</div>`;
+            return;
+        }
+
+        const top3 = list.slice(0, 3);
+        const rest = list.slice(3);
+
+        const podiumOrder = [];
+        if (top3[1]) podiumOrder.push({ ...top3[1], rank: 2 });
+        if (top3[0]) podiumOrder.push({ ...top3[0], rank: 1 });
+        if (top3[2]) podiumOrder.push({ ...top3[2], rank: 3 });
+
+        let html = `
+            <div class="podium-container">
+                ${podiumOrder.map(u => `
+                    <div class="podium-item rank-${u.rank}">
+                        ${u.rank === 1 ? '<div class="crown"><i class="fas fa-crown"></i></div>' : ''}
+                        <img src="${u.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}" class="podium-avatar">
+                        <div class="podium-base">
+                            <div class="podium-name">${escapeHtml(u.name)}</div>
+                            <div class="podium-count">${u[extraKey] || 0} ${extraLabel}</div>
+                            <div class="podium-rank">${u.rank}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="user-grid">
+                ${rest.map(u => `
+                    <div class="user-card">
+                        <img src="${u.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}" class="user-avatar">
+                        <span class="user-name">${escapeHtml(u.name)}</span>
+                        <span style="font-size:0.62rem;color:var(--text-3);">
+                            <i class="fas fa-comment"></i> ${u[extraKey]||0} ${extraLabel}
+                        </span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        container.innerHTML = html;
+        container.style.display = (container.id === 'top-day' || container.classList.contains('active-tab-list')) ? 'block' : container.style.display;
     }
 
     function renderUsers(containerId, list, extraKey = '', extraLabel = '') {
@@ -1089,11 +1249,14 @@
                 )
             ).join('');
 
+            // Top Emojis
+            renderEmojis(d.topEmojis?.day || []);
+
     // Users lists
-    renderUsers('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
-    renderUsers('top-week', d.topActive?.week || [], 'count', 'رسالة');
-    renderUsers('top-month', d.topActive?.month || [], 'count', 'رسالة');
-    renderUsers('top-year', d.topActive?.year || [], 'count', 'رسالة');
+    renderTopActive('top-day',  d.topActive?.day  || [], 'count', 'رسالة');
+    renderTopActive('top-week', d.topActive?.week || [], 'count', 'رسالة');
+    renderTopActive('top-month', d.topActive?.month || [], 'count', 'رسالة');
+    renderTopActive('top-year', d.topActive?.year || [], 'count', 'رسالة');
     renderUsers('staff-list',   d.management   || []);
     renderUsers('boosters-list', d.boostersList || [], 'since', '');
 
