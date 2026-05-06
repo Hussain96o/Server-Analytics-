@@ -22,10 +22,10 @@
         "humans": 764,
         "bots": 35,
         "presence": {
-            "online": 34,
-            "idle": 18,
-            "dnd": 11,
-            "offline": 736
+            "online": 39,
+            "idle": 16,
+            "dnd": 10,
+            "offline": 734
         },
         "joins": {
             "day": 0,
@@ -156,6 +156,11 @@
                 "name": "دزلزر",
                 "avatar": "https://cdn.discordapp.com/avatars/1384494569118236798/6aca4a6a704b67c490b374e9d2817b80.webp?size=128",
                 "count": 969
+            },
+            {
+                "name": "كيزا الحمداني",
+                "avatar": "https://cdn.discordapp.com/avatars/1301969552258760755/49e7e1505a98837fef50c9f4e52079ad.webp?size=128",
+                "count": 496
             }
         ]
     },
@@ -337,6 +342,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٦‏/٥‏/٢٠٢٦، ٨:١٨:٠٢ ص",
-    "timestamp": 1778044682393
+    "generatedAt": "٦‏/٥‏/٢٠٢٦، ٨:٢٤:٠٩ ص",
+    "timestamp": 1778045049291
 }
