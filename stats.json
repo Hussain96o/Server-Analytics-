@@ -104,10 +104,10 @@
         "humans": 766,
         "bots": 35,
         "presence": {
-            "online": 41,
-            "idle": 27,
-            "dnd": 28,
-            "offline": 705
+            "online": 43,
+            "idle": 26,
+            "dnd": 29,
+            "offline": 703
         },
         "joins": {
             "day": 0,
@@ -425,6 +425,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "١٠‏/٥‏/٢٠٢٦، ٤:٥٩:٠٧ م",
-    "timestamp": 1778421547929
+    "generatedAt": "١٠‏/٥‏/٢٠٢٦، ٥:٠٠:٤٩ م",
+    "timestamp": 1778421649749
 }
