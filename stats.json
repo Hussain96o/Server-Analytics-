@@ -5,7 +5,7 @@
         "id": "1302304667610513428",
         "owner": "k12_u",
         "createdAt": "٢‏/١١‏/٢٠٢٤",
-        "age": "1 سنة و 6 شهر و 12 يوم",
+        "age": "1 سنة و 6 شهر و 13 يوم",
         "verificationLevel": "متوسط",
         "boostLevel": 1,
         "boosters": 5,
@@ -19,26 +19,7 @@
     },
     "topEmojis": {
         "day": [],
-        "week": [
-            {
-                "id": "1303156976217493544",
-                "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1303156976217493544.png",
-                "count": 15
-            },
-            {
-                "id": "1303156778015395974",
-                "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1303156778015395974.png",
-                "count": 12
-            },
-            {
-                "id": "1303157720039559209",
-                "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1303157720039559209.png",
-                "count": 9
-            }
-        ],
+        "week": [],
         "month": [
             {
                 "id": "1303156778015395974",
@@ -81,85 +62,35 @@
         ]
     },
     "members": {
-        "total": 804,
-        "humans": 769,
+        "total": 802,
+        "humans": 767,
         "bots": 35,
         "presence": {
-            "online": 61,
-            "idle": 34,
-            "dnd": 25,
-            "offline": 684
+            "online": 40,
+            "idle": 20,
+            "dnd": 8,
+            "offline": 734
         },
         "joins": {
             "day": 0,
-            "week": 20,
-            "month": 25,
-            "year": 249
+            "week": 0,
+            "month": 24,
+            "year": 248
         }
     },
     "topActive": {
         "day": [
             {
-                "name": "water66",
-                "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
-                "count": 12
-            },
-            {
-                "name": "buky",
-                "avatar": "https://cdn.discordapp.com/avatars/1043870350540283955/df3f5d431933bb4c73bfe3745822c82a.webp?size=128",
-                "count": 11
-            },
-            {
-                "name": "THE SILVER",
-                "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 8
-            },
-            {
-                "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/29994d68ec77c47aae187a1378377742.webp?size=128",
+                "name": "عيسى🚬",
+                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/87c260fefac634a40a733b892459c76c.webp?size=128",
                 "count": 3
-            },
-            {
-                "name": "،.،،.",
-                "avatar": "https://cdn.discordapp.com/avatars/1371613133130567761/d36ab2ba2be725647a09581b8df76f47.webp?size=128",
-                "count": 2
-            },
-            {
-                "name": "Bilo🩵",
-                "avatar": "https://cdn.discordapp.com/avatars/1153148545264783380/7e66647f272d888215418ce48f8acd8f.webp?size=128",
-                "count": 2
             }
         ],
         "week": [
             {
-                "name": "THE SILVER",
-                "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 141
-            },
-            {
-                "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/29994d68ec77c47aae187a1378377742.webp?size=128",
-                "count": 101
-            },
-            {
-                "name": "klaus (مُعَزَّز)",
-                "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 75
-            },
-            {
-                "name": "water66",
-                "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
-                "count": 71
-            },
-            {
-                "name": "Adora",
-                "avatar": "https://cdn.discordapp.com/avatars/1491330855212290148/c1a73bbe794f025d1bfa673adc082efb.webp?size=128",
-                "count": 70
-            },
-            {
-                "name": "Haze",
-                "avatar": "https://cdn.discordapp.com/avatars/1413500147970609205/4e0637e314710130a82fdfae4364563d.webp?size=128",
-                "count": 44
+                "name": "عيسى🚬",
+                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/87c260fefac634a40a733b892459c76c.webp?size=128",
+                "count": 3
             }
         ],
         "month": [
@@ -179,6 +110,11 @@
                 "count": 85
             },
             {
+                "name": "عيسى🚬",
+                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/87c260fefac634a40a733b892459c76c.webp?size=128",
+                "count": 76
+            },
+            {
                 "name": "water66",
                 "avatar": "https://cdn.discordapp.com/avatars/1332973527673999360/fa99c343381651420180ca68492a0518.webp?size=128",
                 "count": 75
@@ -187,11 +123,6 @@
                 "name": "klaus (مُعَزَّز)",
                 "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
                 "count": 75
-            },
-            {
-                "name": "عيسى🚬",
-                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/87c260fefac634a40a733b892459c76c.webp?size=128",
-                "count": 73
             }
         ],
         "year": [
@@ -308,39 +239,39 @@
         }
     ],
     "hourlyActivity": [
-        31,
-        99,
-        5,
-        3,
-        1,
-        6,
+        0,
         2,
         1,
-        68,
-        44,
-        19,
-        24,
-        131,
-        36,
-        17,
-        6,
-        39,
-        27,
-        13,
-        17,
-        71,
-        27,
-        79,
-        7
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
     ],
     "weeklyActivity": [
-        89,
-        23,
-        101,
-        319,
-        82,
-        119,
-        40
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
     ],
     "channels": {
         "text": 72,
@@ -349,45 +280,45 @@
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 604
-            },
-            {
-                "name": "الميمز┃˼🤣˹",
-                "count": 75
-            },
-            {
-                "name": "التصوير┃˼📷˹",
-                "count": 40
-            },
-            {
-                "name": "الرسم┃˼🖌˹",
-                "count": 35
-            },
-            {
-                "name": "الشِعر┃˼📜˹",
-                "count": 14
+                "count": 3
             },
             {
                 "name": "التصميم┃˼🖥˹",
-                "count": 5
+                "count": 0
+            },
+            {
+                "name": "الرسم┃˼🖌˹",
+                "count": 0
+            },
+            {
+                "name": "الميمز┃˼🤣˹",
+                "count": 0
+            },
+            {
+                "name": "التصوير┃˼📷˹",
+                "count": 0
+            },
+            {
+                "name": "بوت-العاب┃˼🕹˹",
+                "count": 0
             }
         ],
-        "totalWeek": 773
+        "totalWeek": 3
     },
     "roles": [
         {
             "name": "عـضــو・",
-            "count": 756,
+            "count": 754,
             "color": "#74d49c"
         },
         {
             "name": "رسام مدعي",
-            "count": 112,
+            "count": 111,
             "color": "#ffffff"
         },
         {
             "name": "اشعار فعاليات الرسم • 🖌️",
-            "count": 88,
+            "count": 87,
             "color": "#000000"
         },
         {
@@ -406,6 +337,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٩‏/٥‏/٢٠٢٦، ٦:٤٨:٥٨ م",
-    "timestamp": 1778341738770
+    "generatedAt": "١٠‏/٥‏/٢٠٢٦، ٦:٣٢:٤٧ ص",
+    "timestamp": 1778383967034
 }
