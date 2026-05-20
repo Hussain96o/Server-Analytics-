@@ -99,9 +99,9 @@
         "bots": 35,
         "presence": {
             "online": 47,
-            "idle": 24,
-            "dnd": 24,
-            "offline": 719
+            "idle": 27,
+            "dnd": 16,
+            "offline": 724
         },
         "joins": {
             "day": 2,
@@ -348,7 +348,7 @@
     "channels": {
         "text": 72,
         "voice": 11,
-        "total": 342,
+        "total": 340,
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
@@ -409,6 +409,6 @@
             "color": "#000000"
         }
     ],
-    "generatedAt": "٢٠‏/٥‏/٢٠٢٦، ٣:٤٧:١٥ م",
-    "timestamp": 1779281235649
+    "generatedAt": "٢٠‏/٥‏/٢٠٢٦، ٤:٢٠:٣٨ م",
+    "timestamp": 1779283238056
 }
