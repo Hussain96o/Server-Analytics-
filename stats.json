@@ -5,7 +5,7 @@
         "id": "1302304667610513428",
         "owner": "k12_u",
         "createdAt": "٢‏/١١‏/٢٠٢٤",
-        "age": "1 سنة و 6 شهر و 24 يوم",
+        "age": "1 سنة و 7 شهر و 10 يوم",
         "verificationLevel": "متوسط",
         "boostLevel": 1,
         "boosters": 4,
@@ -20,62 +20,62 @@
     "topEmojis": {
         "day": [
             {
-                "id": "1415133294063784058",
-                "name": "emoji_98",
-                "url": "https://cdn.discordapp.com/emojis/1415133294063784058.png",
-                "count": 5
+                "id": "1303157720039559209",
+                "name": "DVC_emoji",
+                "url": "https://cdn.discordapp.com/emojis/1303157720039559209.png",
+                "count": 10
+            },
+            {
+                "id": "1350844989348778049",
+                "name": "DVC_emoji",
+                "url": "https://cdn.discordapp.com/emojis/1350844989348778049.png",
+                "count": 6
             },
             {
                 "id": "1303156778015395974",
                 "name": "DVC_emoji",
                 "url": "https://cdn.discordapp.com/emojis/1303156778015395974.png",
-                "count": 4
-            },
-            {
-                "id": "1350845075919212555",
-                "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1350845075919212555.png",
-                "count": 3
+                "count": 5
             }
         ],
         "week": [
             {
-                "id": "1415133294063784058",
-                "name": "emoji_98",
-                "url": "https://cdn.discordapp.com/emojis/1415133294063784058.png",
-                "count": 15
-            },
-            {
-                "id": "1350845075919212555",
-                "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1350845075919212555.png",
-                "count": 7
-            },
-            {
                 "id": "1303156976217493544",
                 "name": "DVC_emoji",
                 "url": "https://cdn.discordapp.com/emojis/1303156976217493544.png",
-                "count": 6
-            }
-        ],
-        "month": [
+                "count": 12
+            },
             {
                 "id": "1303156778015395974",
                 "name": "DVC_emoji",
                 "url": "https://cdn.discordapp.com/emojis/1303156778015395974.png",
-                "count": 57
+                "count": 10
             },
             {
-                "id": "1415133294063784058",
-                "name": "emoji_98",
-                "url": "https://cdn.discordapp.com/emojis/1415133294063784058.png",
-                "count": 51
-            },
+                "id": "1303157720039559209",
+                "name": "DVC_emoji",
+                "url": "https://cdn.discordapp.com/emojis/1303157720039559209.png",
+                "count": 10
+            }
+        ],
+        "month": [
             {
                 "id": "1303156976217493544",
                 "name": "DVC_emoji",
                 "url": "https://cdn.discordapp.com/emojis/1303156976217493544.png",
-                "count": 36
+                "count": 10
+            },
+            {
+                "id": "1303157720039559209",
+                "name": "DVC_emoji",
+                "url": "https://cdn.discordapp.com/emojis/1303157720039559209.png",
+                "count": 10
+            },
+            {
+                "id": "1303156778015395974",
+                "name": "DVC_emoji",
+                "url": "https://cdn.discordapp.com/emojis/1303156778015395974.png",
+                "count": 8
             }
         ],
         "year": [
@@ -83,37 +83,37 @@
                 "id": "1415133294063784058",
                 "name": "emoji_98",
                 "url": "https://cdn.discordapp.com/emojis/1415133294063784058.png",
-                "count": 342
+                "count": 369
             },
             {
                 "id": "1303156778015395974",
                 "name": "DVC_emoji",
                 "url": "https://cdn.discordapp.com/emojis/1303156778015395974.png",
-                "count": 289
+                "count": 310
             },
             {
-                "id": "1303157720039559209",
+                "id": "1303156976217493544",
                 "name": "DVC_emoji",
-                "url": "https://cdn.discordapp.com/emojis/1303157720039559209.png",
-                "count": 263
+                "url": "https://cdn.discordapp.com/emojis/1303156976217493544.png",
+                "count": 279
             }
         ]
     },
     "members": {
-        "total": 813,
-        "humans": 778,
+        "total": 839,
+        "humans": 804,
         "bots": 35,
         "presence": {
-            "online": 55,
-            "idle": 24,
-            "dnd": 20,
-            "offline": 714
+            "online": 58,
+            "idle": 35,
+            "dnd": 22,
+            "offline": 724
         },
         "joins": {
-            "day": 0,
-            "week": 13,
-            "month": 44,
-            "year": 263
+            "day": 6,
+            "week": 34,
+            "month": 33,
+            "year": 296
         }
     },
     "topActive": {
@@ -121,130 +121,135 @@
             {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 21
+                "count": 61
             },
             {
-                "name": "buky",
-                "avatar": "https://cdn.discordapp.com/avatars/1043870350540283955/efc4ea4f18a572dbd13dd9970478c9a4.webp?size=128",
-                "count": 17
+                "name": "Die",
+                "avatar": "https://cdn.discordapp.com/avatars/1471506788867113114/446022400260b66e819636e459f505c9.webp?size=128",
+                "count": 44
             },
             {
-                "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/88154ad6adb335f415a3ed50664b747c.webp?size=128",
-                "count": 5
+                "name": "THE WEW",
+                "avatar": "https://cdn.discordapp.com/avatars/886950259526348850/2d1a5892f3f642692ccf8e46c69f011e.webp?size=128",
+                "count": 12
             },
             {
-                "name": "klaus (مُعَزَّز)",
-                "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 3
-            },
-            {
-                "name": "حجي سول",
-                "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/f37d89a9aa975466b89afe7b1c0c0f86.webp?size=128",
+                "name": "granola",
+                "avatar": "https://cdn.discordapp.com/avatars/1243158245967925249/1760be036019fffe01c2dcf94267f1bf.webp?size=128",
                 "count": 1
             },
             {
-                "name": "0xωαxиαα",
-                "avatar": "https://cdn.discordapp.com/avatars/680536240159981680/69c37a10c6bb31ec1a3e5b63eaefa5a6.webp?size=128",
+                "name": "𝐃𝐀𝐕𝐈𝐃",
+                "avatar": "https://cdn.discordapp.com/avatars/890645274618396715/2ef594d21d13e0f7c4f90efc45029a12.webp?size=128",
+                "count": 1
+            },
+            {
+                "name": "Lulz🌊",
+                "avatar": "https://cdn.discordapp.com/avatars/1432051332713414748/9be4a53315f1dc90c300826a50585609.webp?size=128",
                 "count": 1
             }
         ],
         "week": [
             {
-                "name": "klaus (مُعَزَّز)",
-                "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 158
-            },
-            {
-                "name": "Yan",
-                "avatar": "https://cdn.discordapp.com/avatars/924673968093429810/f48d15ddff9e7c4f315e716b0fcc0622.webp?size=128",
-                "count": 115
-            },
-            {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 69
+                "count": 178
+            },
+            {
+                "name": "𝕋𝕠𝕓𝕪 ℂ𝕒𝕞𝕖𝕣𝕒𝕞𝕒𝕟",
+                "avatar": "https://cdn.discordapp.com/avatars/1425230354129616928/1b0c71f8383d3804cf3a9416573c18fb.webp?size=128",
+                "count": 45
             },
             {
                 "name": "0xωαxиαα",
                 "avatar": "https://cdn.discordapp.com/avatars/680536240159981680/69c37a10c6bb31ec1a3e5b63eaefa5a6.webp?size=128",
-                "count": 52
+                "count": 45
+            },
+            {
+                "name": "Die",
+                "avatar": "https://cdn.discordapp.com/avatars/1471506788867113114/446022400260b66e819636e459f505c9.webp?size=128",
+                "count": 44
+            },
+            {
+                "name": "Hasan",
+                "avatar": "https://cdn.discordapp.com/avatars/1431337492245774426/b1dc91935f332751d13f562e98166f91.webp?size=128",
+                "count": 34
             },
             {
                 "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/88154ad6adb335f415a3ed50664b747c.webp?size=128",
-                "count": 43
-            },
-            {
-                "name": "buky",
-                "avatar": "https://cdn.discordapp.com/avatars/1043870350540283955/efc4ea4f18a572dbd13dd9970478c9a4.webp?size=128",
-                "count": 39
+                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/5cfa73efc500adac0e777374f5eedfb6.webp?size=128",
+                "count": 32
             }
         ],
         "month": [
             {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 579
+                "count": 154
             },
             {
-                "name": "klaus (مُعَزَّز)",
-                "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 275
+                "name": "0xωαxиαα",
+                "avatar": "https://cdn.discordapp.com/avatars/680536240159981680/69c37a10c6bb31ec1a3e5b63eaefa5a6.webp?size=128",
+                "count": 45
+            },
+            {
+                "name": "𝕋𝕠𝕓𝕪 ℂ𝕒𝕞𝕖𝕣𝕒𝕞𝕒𝕟",
+                "avatar": "https://cdn.discordapp.com/avatars/1425230354129616928/1b0c71f8383d3804cf3a9416573c18fb.webp?size=128",
+                "count": 44
+            },
+            {
+                "name": "Die",
+                "avatar": "https://cdn.discordapp.com/avatars/1471506788867113114/446022400260b66e819636e459f505c9.webp?size=128",
+                "count": 44
+            },
+            {
+                "name": "Hasan",
+                "avatar": "https://cdn.discordapp.com/avatars/1431337492245774426/b1dc91935f332751d13f562e98166f91.webp?size=128",
+                "count": 34
             },
             {
                 "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/88154ad6adb335f415a3ed50664b747c.webp?size=128",
-                "count": 244
-            },
-            {
-                "name": "Yan",
-                "avatar": "https://cdn.discordapp.com/avatars/924673968093429810/f48d15ddff9e7c4f315e716b0fcc0622.webp?size=128",
-                "count": 115
-            },
-            {
-                "name": "فوشیگورۆ",
-                "avatar": "https://cdn.discordapp.com/avatars/1311040288093110336/91546da608a0bac2bc0c0764ec44d1e8.webp?size=128",
-                "count": 91
-            },
-            {
-                "name": "mahmoud",
-                "avatar": "https://cdn.discordapp.com/avatars/1354826028136136887/5200ce7b2554ae83be1387521f1f3b8d.webp?size=128",
-                "count": 87
+                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/5cfa73efc500adac0e777374f5eedfb6.webp?size=128",
+                "count": 31
             }
         ],
         "year": [
             {
                 "name": "THE SILVER",
                 "avatar": "https://cdn.discordapp.com/avatars/1214669043441864835/ed9d49a8a80fe171127a6e2bf57f93c4.webp?size=128",
-                "count": 3687
+                "count": 4010
             },
             {
                 "name": "klaus (مُعَزَّز)",
                 "avatar": "https://cdn.discordapp.com/avatars/1029804676935331922/60d21f551d72e90f91cf5b768b9cde4e.webp?size=128",
-                "count": 2613
+                "count": 2658
             },
             {
                 "name": "Hussain",
-                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/88154ad6adb335f415a3ed50664b747c.webp?size=128",
-                "count": 1651
+                "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/5cfa73efc500adac0e777374f5eedfb6.webp?size=128",
+                "count": 1720
             },
             {
-                "name": "AranGFX",
-                "avatar": "https://cdn.discordapp.com/avatars/1405624134892916857/fe8a964af2b40511e7a4bf0865ff89ff.webp?size=128",
-                "count": 1004
+                "name": "!  AranGFX",
+                "avatar": "https://cdn.discordapp.com/avatars/1405624134892916857/5061f62bdeabbb05cc74fd0bfc1be7b3.webp?size=128",
+                "count": 1015
             },
             {
                 "name": "دزلزر",
-                "avatar": "https://cdn.discordapp.com/avatars/1384494569118236798/9d3575f2214fff0fc1536c0add24da67.webp?size=128",
-                "count": 982
+                "avatar": "https://cdn.discordapp.com/avatars/1384494569118236798/a449951296d168f20629e6796dc49a7d.webp?size=128",
+                "count": 986
+            },
+            {
+                "name": "کایتۆ",
+                "avatar": "https://cdn.discordapp.com/avatars/1311040288093110336/91546da608a0bac2bc0c0764ec44d1e8.webp?size=128",
+                "count": 603
             }
         ]
     },
     "management": [
         {
             "name": "كيزا الحمداني",
-            "avatar": "https://cdn.discordapp.com/avatars/1301969552258760755/49e7e1505a98837fef50c9f4e52079ad.webp?size=128",
+            "avatar": "https://cdn.discordapp.com/avatars/1301969552258760755/326c1175a15bf92443a45f3ea0a27ade.webp?size=128",
             "role": "الملك",
             "color": "#a500ff"
         },
@@ -279,14 +284,14 @@
             "color": "#65e5ff"
         },
         {
-            "name": "حجي سول",
-            "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/f37d89a9aa975466b89afe7b1c0c0f86.webp?size=128",
+            "name": "Engi Soul",
+            "avatar": "https://cdn.discordapp.com/avatars/798448810049142844/61be8e4806207e751a21e14d7ad6ca1c.webp?size=128",
             "role": "・أمير",
             "color": "#65e5ff"
         },
         {
             "name": "Hussain",
-            "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/88154ad6adb335f415a3ed50664b747c.webp?size=128",
+            "avatar": "https://cdn.discordapp.com/avatars/906845963086340126/5cfa73efc500adac0e777374f5eedfb6.webp?size=128",
             "role": "・أمير",
             "color": "#65e5ff"
         },
@@ -311,115 +316,115 @@
     ],
     "boostersList": [
         {
-            "name": "𝒦𝓃𝒾ℊ𝒽𝓉",
-            "avatar": "https://cdn.discordapp.com/avatars/429197055567724546/b3532184a067586a90cd8383803c8179.webp?size=128",
-            "since": "١٣‏/٤‏/٢٠٢٦"
+            "name": "Tanjiro 🔥",
+            "avatar": "https://cdn.discordapp.com/avatars/1053608190736076840/a_4d863768ed9716fbe34385204cc199b2.gif?size=128",
+            "since": "٣١‏/٥‏/٢٠٢٦"
         },
         {
             "name": "شهيد الاتحاد السوفيتي",
-            "avatar": "https://cdn.discordapp.com/avatars/119527840701087745/bc0fcb8d664435daf61f80031608a137.webp?size=128",
+            "avatar": "https://cdn.discordapp.com/avatars/119527840701087745/968fd8abc0eef297e0f55495f1a6bb0c.webp?size=128",
             "since": "٢١‏/٣‏/٢٠٢٦"
         }
     ],
     "hourlyActivity": [
-        14,
-        128,
-        124,
+        36,
+        80,
+        6,
+        5,
+        6,
+        5,
+        1,
+        1,
+        2,
+        11,
+        11,
+        2,
+        13,
         4,
-        4,
-        5,
-        2,
-        2,
-        0,
-        2,
-        2,
-        5,
-        26,
-        91,
-        41,
-        15,
-        10,
-        23,
-        21,
-        16,
-        10,
-        5,
-        22,
-        6
+        9,
+        20,
+        27,
+        56,
+        28,
+        54,
+        129,
+        7,
+        29,
+        50
     ],
     "weeklyActivity": [
-        131,
-        57,
-        320,
-        22,
-        48,
-        0,
+        94,
+        92,
+        41,
+        78,
+        160,
+        127,
         0
     ],
     "channels": {
         "text": 72,
         "voice": 11,
-        "total": 339,
+        "total": 294,
         "statsWeek": [
             {
                 "name": "المحادثة┃˼💬˹",
-                "count": 506
+                "count": 534
             },
             {
                 "name": "الشِعر┃˼📜˹",
-                "count": 31
-            },
-            {
-                "name": "الرسم┃˼🖌˹",
                 "count": 23
             },
             {
-                "name": "التصميم┃˼🖥˹",
-                "count": 9
+                "name": "الميمز┃˼🤣˹",
+                "count": 17
             },
             {
-                "name": "الميمز┃˼🤣˹",
-                "count": 9
+                "name": "الرسم┃˼🖌˹",
+                "count": 14
+            },
+            {
+                "name": "التصميم┃˼🖥˹",
+                "count": 4
             },
             {
                 "name": "التصوير┃˼📷˹",
                 "count": 0
             }
         ],
-        "totalWeek": 578
+        "totalWeek": 592
     },
     "roles": [
         {
             "name": "عـضــو・",
-            "count": 765,
+            "count": 791,
             "color": "#74d49c"
         },
         {
             "name": "رسام مدعي",
-            "count": 105,
+            "count": 107,
             "color": "#ffffff"
         },
         {
             "name": "اشعار فعاليات الرسم • 🖌️",
-            "count": 86,
+            "count": 85,
             "color": "#000000"
         },
         {
             "name": "مصمم مدعي",
-            "count": 79,
+            "count": 77,
             "color": "#ffffff"
         },
         {
             "name": "اشعار فعاليات التصميم • 🖥️",
-            "count": 64,
+            "count": 62,
             "color": "#000000"
         },
         {
-            "name": "شاعر مدعي",
-            "count": 49,
-            "color": "#ffffff"
+            "name": "ولد",
+            "count": 50,
+            "color": "#000000"
         }
     ],
-    "generatedAt": "٢١‏/٥‏/٢٠٢٦، ٤:١٢:٤٦ م",
-    "timestamp": 1779369166731
+    "generatedAt": "٥‏/٦‏/٢٠٢٦، ٩:٢٥:٣٥ م",
+    "timestamp": 1780683935324
 }
